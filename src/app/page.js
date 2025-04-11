@@ -7,15 +7,15 @@ import { Button } from '@/components/ui/button';
 const plantSquares = [
   'Moss growing on a street sign',
   'Dandelion bursting through concrete',
+  "St. Johns wort in an alley",
   'Licorice fern in a tree crevice',
   'Camassia blooming near a bus stop',
-  'St. John’s wort in an alley',
   'Plantain between bricks',
   'Volunteer sunflower near a mailbox',
   'English ivy climbing a fence',
   'Oxalis in a sidewalk crack',
   'Tree roots busting pavement',
-  'Pothos in a café window',
+  'Pothos in a cafe window',
   'Free space 🍃',
   'Sword fern near a dumpster',
   'Lichen on a telephone pole',
@@ -102,7 +102,7 @@ export default function Bingo() {
 
       {won && (
         <div className="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-90 text-white text-xl md:text-2xl font-bold text-center p-4">
-          You're one botanical bitch! 🍃
+          You&apos;re one botanical bitch! 🍃
         </div>
       )}
 
