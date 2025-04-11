@@ -102,8 +102,9 @@ export default function Bingo() {
 
       {won && (
         <div className="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-90 text-white text-xl md:text-2xl font-bold text-center p-4">
-          You&apos;re one botanical bitch! 🍃
-        </div>
+        {"Youre one botanical bitch! 🍃"}
+      </div>
+      
       )}
 
       <div className="flex justify-center mt-4 md:mt-6">
