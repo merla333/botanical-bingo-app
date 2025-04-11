@@ -5,30 +5,30 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const plantSquares = [
-  'Moss growing on a street sign',
-  'Dandelion bursting through concrete',
+  "Moss growing on a street sign",
+  "Dandelion bursting through concrete",
   "St. Johns wort in an alley",
-  'Licorice fern in a tree crevice',
-  'Camassia blooming near a bus stop',
-  'Plantain between bricks',
-  'Volunteer sunflower near a mailbox',
-  'English ivy climbing a fence',
-  'Oxalis in a sidewalk crack',
-  'Tree roots busting pavement',
-  'Pothos in a cafe window',
-  'Free space 🍃',
-  'Sword fern near a dumpster',
-  'Lichen on a telephone pole',
-  'Laurel hedge swallowing a sign',
-  'Grasses pushing up a curb',
-  'Red clover by a bike rack',
-  'Mushroom in a mulch pile',
-  'Rose bush in a neglected lot',
-  'Creeping Jenny spilling from a pot',
-  'Urban wildflower mix',
-  'Mimosa tree leaf litter',
-  'Overwatered succulent at work',
-  'Monstera print in public space'
+  "Licorice fern in a tree crevice",
+  "Camassia blooming near a bus stop",
+  "Plantain between bricks",
+  "Volunteer sunflower near a mailbox",
+  "English ivy climbing a fence",
+  "Oxalis in a sidewalk crack",
+  "Tree roots busting pavement",
+  "Pothos in a cafe window",
+  "Free space 🍃",
+  "Sword fern near a dumpster",
+  "Lichen on a telephone pole",
+  "Laurel hedge swallowing a sign",
+  "Grasses pushing up a curb",
+  "Red clover by a bike rack",
+  "Mushroom in a mulch pile",
+  "Rose bush in a neglected lot",
+  "Creeping Jenny spilling from a pot",
+  "Urban wildflower mix",
+  "Mimosa tree leaf litter",
+  "Overwatered succulent at work",
+  "Monstera print in public space"
 ];
 
 const getSavedState = () => {
@@ -60,7 +60,7 @@ const checkBingo = (selected) => {
     [0, 6, 12, 18, 24],
     [4, 8, 12, 16, 20]
   ];
-  return winPatterns.some(pattern => pattern.every(i => selected.includes(i)));
+  return winPatterns.some((pattern) => pattern.every((i) => selected.includes(i)));
 };
 
 export default function Bingo() {
@@ -90,7 +90,9 @@ export default function Bingo() {
             key={index}
             onClick={() => toggleCell(index)}
             className={`text-center p-1 md:p-2 cursor-pointer rounded-xl transition-all duration-200 text-xs md:text-sm ${
-              selected.includes(index) ? 'bg-green-300 border-green-600' : 'bg-white border-gray-300'
+              selected.includes(index)
+                ? 'bg-green-300 border-green-600'
+                : 'bg-white border-gray-300'
             } ${index === 12 ? 'font-bold' : ''}`}
           >
             <CardContent className="h-16 md:h-20 flex items-center justify-center text-center">
@@ -102,9 +104,10 @@ export default function Bingo() {
 
       {won && (
         <div className="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-90 text-white text-xl md:text-2xl font-bold text-center p-4">
-        {"Youre one botanical bitch! 🍃"}
-      </div>
-      
+            {"Youre one botanical bitch! 🍃"}
+
+
+        </div>
       )}
 
       <div className="flex justify-center mt-4 md:mt-6">
