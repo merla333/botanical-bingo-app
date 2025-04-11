@@ -1,4 +1,4 @@
-import nextPwa from 'next-pwa.js';
+import nextPwa from 'next-pwa';
 
 const withPWA = nextPwa({
   dest: 'public',
