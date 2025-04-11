@@ -1,103 +1,116 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+const plantSquares = [
+  'Moss growing on a street sign',
+  'Dandelion bursting through concrete',
+  'Licorice fern in a tree crevice',
+  'Camassia blooming near a bus stop',
+  'St. John’s wort in an alley',
+  'Plantain between bricks',
+  'Volunteer sunflower near a mailbox',
+  'English ivy climbing a fence',
+  'Oxalis in a sidewalk crack',
+  'Tree roots busting pavement',
+  'Pothos in a café window',
+  'Free space 🍃',
+  'Sword fern near a dumpster',
+  'Lichen on a telephone pole',
+  'Laurel hedge swallowing a sign',
+  'Grasses pushing up a curb',
+  'Red clover by a bike rack',
+  'Mushroom in a mulch pile',
+  'Rose bush in a neglected lot',
+  'Creeping Jenny spilling from a pot',
+  'Urban wildflower mix',
+  'Mimosa tree leaf litter',
+  'Overwatered succulent at work',
+  'Monstera print in public space'
+];
+
+const getSavedState = () => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('bingoState');
+    return saved ? JSON.parse(saved) : [12]; // Always pre-select free space
+  }
+  return [12];
+};
+
+const saveState = (state) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('bingoState', JSON.stringify(state));
+  }
+};
+
+const checkBingo = (selected) => {
+  const winPatterns = [
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9],
+    [10, 11, 12, 13, 14],
+    [15, 16, 17, 18, 19],
+    [20, 21, 22, 23, 24],
+    [0, 5, 10, 15, 20],
+    [1, 6, 11, 16, 21],
+    [2, 7, 12, 17, 22],
+    [3, 8, 13, 18, 23],
+    [4, 9, 14, 19, 24],
+    [0, 6, 12, 18, 24],
+    [4, 8, 12, 16, 20]
+  ];
+  return winPatterns.some(pattern => pattern.every(i => selected.includes(i)));
+};
+
+export default function Bingo() {
+  const [selected, setSelected] = useState(getSavedState);
+  const [won, setWon] = useState(false);
+
+  useEffect(() => {
+    saveState(selected);
+    setWon(checkBingo(selected));
+  }, [selected]);
+
+  const toggleCell = (index) => {
+    if (index === 12) return; // Free space always marked
+    setSelected((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-green-50 text-green-900 p-4 font-sans">
+      <h1 className="text-xl md:text-3xl font-bold text-center mb-4 md:mb-6 leading-tight">
+        🌿 Portland Plantcore Bingo 🌿
+      </h1>
+      <div className="grid grid-cols-5 gap-1 md:gap-2 max-w-xs md:max-w-xl mx-auto">
+        {plantSquares.map((item, index) => (
+          <Card
+            key={index}
+            onClick={() => toggleCell(index)}
+            className={`text-center p-1 md:p-2 cursor-pointer rounded-xl transition-all duration-200 text-xs md:text-sm ${
+              selected.includes(index) ? 'bg-green-300 border-green-600' : 'bg-white border-gray-300'
+            } ${index === 12 ? 'font-bold' : ''}`}
+          >
+            <CardContent className="h-16 md:h-20 flex items-center justify-center text-center">
+              {item}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {won && (
+        <div className="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-90 text-white text-xl md:text-2xl font-bold text-center p-4">
+          You're one botanical bitch! 🍃
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
+
+      <div className="flex justify-center mt-4 md:mt-6">
+        <Button variant="outline" onClick={() => setSelected([12])}>
+          Reset Card
+        </Button>
+      </div>
     </div>
   );
 }
