@@ -5,30 +5,30 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const plantSquares = [
-  "Moss growing on a street sign",
-  "Dandelion bursting through concrete",
-  "St. Johns wort in an alley",
-  "Licorice fern in a tree crevice",
-  "Camassia blooming near a bus stop",
-  "Plantain between bricks",
-  "Volunteer sunflower near a mailbox",
-  "English ivy climbing a fence",
-  "Oxalis in a sidewalk crack",
-  "Tree roots busting pavement",
-  "Pothos in a cafe window",
-  "Free space 🍃",
-  "Sword fern near a dumpster",
-  "Lichen on a telephone pole",
-  "Laurel hedge swallowing a sign",
-  "Grasses pushing up a curb",
-  "Red clover by a bike rack",
-  "Mushroom in a mulch pile",
-  "Rose bush in a neglected lot",
-  "Creeping Jenny spilling from a pot",
-  "Urban wildflower mix",
-  "Mimosa tree leaf litter",
-  "Overwatered succulent at work",
-  "Monstera print in public space"
+  'Moss growing on a street sign',
+  'Dandelion bursting through concrete',
+  "St Johns wort in an alley",
+  'Licorice fern in a tree crevice',
+  'Camassia blooming near a bus stop',
+  'Plantain between bricks',
+  'Volunteer sunflower near a mailbox',
+  'English ivy climbing a fence',
+  'Oxalis in a sidewalk crack',
+  'Tree roots busting pavement',
+  'Pothos in a cafe window',
+  'Free space 🍃',
+  'Sword fern near a dumpster',
+  'Lichen on a telephone pole',
+  'Laurel hedge swallowing a sign',
+  'Grasses pushing up a curb',
+  'Red clover by a bike rack',
+  'Mushroom in a mulch pile',
+  'Rose bush in a neglected lot',
+  'Creeping Jenny spilling from a pot',
+  'Urban wildflower mix',
+  'Mimosa tree leaf litter',
+  'Overwatered succulent at work',
+  'Monstera print in public space'
 ];
 
 const getSavedState = () => {
@@ -104,9 +104,7 @@ export default function Bingo() {
 
       {won && (
         <div className="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-90 text-white text-xl md:text-2xl font-bold text-center p-4">
-            {"Youre one botanical bitch! 🍃"}
-
-
+          {"Youre one botanical bitch! 🍃"}
         </div>
       )}
 
